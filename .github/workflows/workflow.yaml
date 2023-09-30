@@ -1,0 +1,8 @@
+name: Docker image flow
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [ push ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World!!"
