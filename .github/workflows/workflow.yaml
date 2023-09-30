@@ -3,6 +3,6 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on: [ push ]
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - run: make build_load_local
