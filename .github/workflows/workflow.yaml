@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: docker
+      image: catthehacker/ubuntu:act-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
