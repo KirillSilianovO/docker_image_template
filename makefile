@@ -1,7 +1,7 @@
 include env
 export
 
-BUILDER_NAME = deploy-builder
+BUILDER_NAME = multi-arch-builder
 
 ifeq ($(strip $(IMAGE_VERSION)),)
   VER := $(VER)
@@ -10,6 +10,7 @@ else
 endif
 
 builder_recreate:
+	export DOCKER_CLI_EXPERIMENTAL=enabled
 	docker buildx rm $(BUILDER_NAME) || true
 	docker buildx create --name $(BUILDER_NAME) --driver docker-container --use
 
