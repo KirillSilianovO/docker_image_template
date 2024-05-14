@@ -1,33 +1,26 @@
 # DOCKER IMAGE BUILD TEMPLATE
 
 ## Description
-Template for building docker images.
+Template for building multiplatform Docker images
 
 ## Usage
 
+### Requirements
+1. Docker
+2. [TaskFile](https://taskfile.dev/#/installation)
+
 ### Before start
-1. Set your image name in Makefile
-2. Configure your Dockerfile
-3. Configure your .dockerignore
+1. Set your image namespace and version in `variables.yaml`
+2. Copy `example.secrets.yaml` to `.secrets.yaml` and set your credentials for Docker Hub
 
-### Build image for architecture
-#### ARM64v8
+### Build image and load them into local Docker
 
-```
-make build_arm IMAGE_VERSION=0.0.1
+```shell
+task build_load
 ```
 
-#### AMD64
+### Build image and push them to Docker Hub
 
+```shell
+task build_push
 ```
-make build_amd IMAGE_VERSION=0.0.1
-```
-
-### Build and push image
-
-```
-make build_push IMAGE_VERSION=0.0.1
-```
-
-### CI\CD
-For build images you must set version tag

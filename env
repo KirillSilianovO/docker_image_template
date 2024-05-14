@@ -1,3 +1,0 @@
-GLOBAL_IMAGE_NAME = kirillsilianov/template_image
-LOCAL_IMAGE_NAME = harbor.ksilianov.xyz/main/template_image
-VER = 1.0.1
