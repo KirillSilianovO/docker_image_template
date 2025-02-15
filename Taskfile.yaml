@@ -6,10 +6,15 @@ includes:
   ext_vars: './variables.yaml'
   secrets: './.secrets.yaml'
 
+vars:
+  ARCH:
+    sh: "echo $(uname -m)"
+  LOCAL_PLATFORM: "linux/{{ .ARCH }}"
+
 tasks:
   build_load:
     label: 'Build image and load to Docker'
-    cmd: "IMAGE_NAMESPACE={{ .IMAGE_NAMESPACE }} VERSION={{ .VERSION }} docker buildx bake load"
+    cmd: "IMAGE_NAMESPACE={{ .IMAGE_NAMESPACE }} VERSION={{ .VERSION }} LOCAL_PLATFORM={{ .LOCAL_PLATFORM }} docker buildx bake load"
 
   build_push:
     label: 'Build image and push to DockerHub'

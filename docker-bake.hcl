@@ -6,6 +6,10 @@ variable "VERSION" {
   default = "$VERSION"
 }
 
+variable "LOCAL_PLATFORM" {
+  default = "linux/amd64"
+}
+
 group "load" {
   targets = ["load_local"]
 }
@@ -26,7 +30,7 @@ target "base" {
 
 target "load_local" {
   inherits = ["base"]
-  platforms = ["${BAKE_LOCAL_PLATFORM}"]
+  platforms = ["${LOCAL_PLATFORM}"]
   output   = ["type=docker"]
 }
 
