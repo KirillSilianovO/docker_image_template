@@ -14,13 +14,20 @@ vars:
 tasks:
   build_load:
     label: 'Build image and load to Docker'
-    cmd: "IMAGE_NAMESPACE={{ .IMAGE_NAMESPACE }} VERSION={{ .VERSION }} LOCAL_PLATFORM={{ .LOCAL_PLATFORM }} docker buildx bake load"
+    cmd: "docker buildx bake load"
+    env:
+      IMAGE_NAMESPACE: "{{ .IMAGE_NAMESPACE }}"
+      VERSION: "{{ .VERSION }}"
+      LOCAL_PLATFORM: "{{ .LOCAL_PLATFORM }} "
 
   build_push:
     label: 'Build image and push to DockerHub'
     cmds:
       - "docker login -u {{ .DOCKERHUB_LOGIN }} -p {{ .DOCKERHUB_PASSWORD }}"
       - "IMAGE_NAMESPACE={{ .IMAGE_NAMESPACE }} VERSION={{ .VERSION }} docker buildx bake push"
+    env:
+      IMAGE_NAMESPACE: "{{ .IMAGE_NAMESPACE }}"
+      VERSION: "{{ .VERSION }}"
 
   run:
     label: 'Run container'
